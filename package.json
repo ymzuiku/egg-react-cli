@@ -2,7 +2,7 @@
   "name": "egg-react-cli",
   "version": "1.0.0",
   "description": "",
-  "private": true,
+  "private": false,
   "dependencies": {
     "egg": "^2.2.1",
     "egg-imports": "^0.0.8",
