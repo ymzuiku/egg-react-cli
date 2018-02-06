@@ -1,0 +1,52 @@
+{
+  "name": "egg-react-cli",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "egg": "^2.2.1",
+    "egg-imports": "^0.0.8",
+    "egg-mongodb": "^1.0.7",
+    "egg-scripts": "^2.5.0",
+    "egg-socket.io": "^4.0.6",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.0.0",
+    "egg-bin": "^4.3.5",
+    "egg-ci": "^1.8.0",
+    "egg-mock": "^3.14.0",
+    "eslint": "^4.11.0",
+    "eslint-config-egg": "^6.0.0",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "build":"cd client && npm run build",
+    "start": "npm run dev & cd client && npm run start",
+    "new": "cp -rf run/.client client-请重命名前端项目",
+    "reload": "npm run stop && npm run prod",
+    "prod": "egg-scripts start --sticky --daemon --title=egg-server-testwb",
+    "stop": "egg-scripts stop --title=egg-server-testwb",
+    "dev": "egg-bin dev --sticky",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "8"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT"
+}
