@@ -27,7 +27,7 @@
   "scripts": {
     "build":"cd client && npm run build",
     "start": "npm run dev & cd client && npm run start",
-    "new": "cp -rf run/.client client-请重命名前端项目",
+    "new": "cp -rf public/.client client-请重命名前端项目",
     "reload": "npm run stop && npm run prod",
     "prod": "egg-scripts start --sticky --daemon --title=egg-server-testwb",
     "stop": "egg-scripts stop --title=egg-server-testwb",
