@@ -1,0 +1,27 @@
+{
+  "extends": "react-app",
+  "rules": {
+    "import/first": 0,
+    "no-use-before-define": 0,
+    "radix": 0,
+    "react/jsx-no-duplicate-props": 0,
+    "no-unused-expressions": 0,
+    "no-extend-native": 0,
+    "eqeqeq": 0,
+    "no-labels": 0,
+    "array-callback-return": 0,
+    "no-unused-vars": 0,
+    "no-multi-spaces": 0,
+    "no-useless-constructor": 0,
+    "react/jsx-space-before-closing": 0,
+    "jsx-quotes": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "react/jsx-boolean-value": 1,
+    "react/no-string-refs": 1,
+    "react/self-closing-comp": 0,
+    "react/jsx-no-bind": 0,
+    "react/sort-comp": 0,
+    "jsx-a11y/href-no-hash": 0,
+    "react/jsx-pascal-case": 0
+  }
+}
