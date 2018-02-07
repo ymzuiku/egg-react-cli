@@ -8,6 +8,6 @@ exports.io = {
 }
 
 exports.mongodb = {
-  enable: true,
+  enable: false,
   package: 'egg-mongodb'
 }
