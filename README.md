@@ -3,6 +3,7 @@
 > 本脚手架支持使用 react 或 vue 配合 egg 开发项目
 
 ## 开始
+> 下载项目、修改项目名、安装依赖、编译固定npm包至dll，启动egg并且启动webpack watch打包
 ```bash
 git clone git@github.com:ymzuiku/egg-react-cli.git
 mv egg-react-cli new-project
@@ -44,8 +45,9 @@ $ open http://localhost:7001/
 ### 部署
 
 ```bash
-$ npm prod
-$ npm stop
+$ npm build   (打包前端项目)
+$ npm prod    (启动egg服务)
+$ npm stop    (停止egg服务)
 ```
 
 ### 单元测试
