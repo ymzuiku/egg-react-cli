@@ -1,6 +1,6 @@
 {
   "name": "egg-react-cli",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "",
   "private": true,
   "egg-port": "7001",

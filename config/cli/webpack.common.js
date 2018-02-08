@@ -3,13 +3,6 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
 
-// const fs = require('fs-extra')
-// fs.copy(
-//   path.resolve(__dirname, '../../client/static'),
-//   path.resolve(__dirname, '../../public/static'))
-//   .then(() => { })
-//   .catch(err => console.error(err))
-
 let cssLoaders = [
   {
     loader: require.resolve('style-loader'),
