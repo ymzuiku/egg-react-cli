@@ -2,8 +2,18 @@
 
 > 本脚手架支持使用 react 或 vue 配合 egg 开发项目
 
+## 开始
+```bash
+git clone git@github.com:ymzuiku/egg-react-cli.git
+mv egg-react-cli new-project
+cd new-project
+npm install
+npm run dll
+npm run start
+```
+
 ## 前端编译
-先编译依赖到client/static/vendor.dll.js
+首次开发需要先编译依赖到 client/static/vendor.dll.js
 ```bash
 $ npm run dll   (或则 dll-react、dll-vue)
 ```
