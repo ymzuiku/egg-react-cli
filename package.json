@@ -1,6 +1,6 @@
 {
   "name": "egg-react-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "private": true,
   "egg-port": "7001",
@@ -12,7 +12,7 @@
     }
   },
   "scripts": {
-    "bin":"node config/cli/bin.js",
+    "bin": "node config/cli/bin.js",
     "dll": "webpack --config config/cli/webpack.vendor.dll.js",
     "dll-all": "cross-env dll=all npm run dll",
     "dll-react": "cross-env dll=react npm run dll",
