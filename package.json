@@ -2,7 +2,7 @@
   "name": "egg-react-cli",
   "version": "0.0.2",
   "description": "",
-  "private": true,
+  "private": false,
   "egg-port": "7001",
   "port": "7000",
   "proxy": {
