@@ -10,7 +10,8 @@ mv egg-react-cli new-project
 cd new-project
 npm install
 npm run dll
-npm run start
+npm run dev 
+npm run start  (新开一个终端窗口，编译前端代码至public)
 ```
 
 ### 前端编译
@@ -35,10 +36,10 @@ $ npm run dll   (或则 dll-react、dll-vue)
 如需进一步了解，参见 [egg 文档][egg]。
 
 ### 本地开发
-启动egg服务器，并且使用webpack打包client文件夹至public
+启动egg服务器
 
 ```bash
-$ npm run start
+$ npm run dev
 $ open http://localhost:7001/
 ```
 
