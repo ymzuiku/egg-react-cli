@@ -11,3 +11,4 @@ copyFiles.map(async (v) => {
     __root+'/'+v,
     path.resolve(to, v))
 })
+//
