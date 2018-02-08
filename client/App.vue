@@ -24,6 +24,8 @@ export default {
 }
 .img {
   background-image url('./static/img.jpg')
+  background-repeat no-repeat
+  background-size contain
   width 100px
   height 100px
 }
