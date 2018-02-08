@@ -3,8 +3,6 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
 
-var vendorManifest = require('../../client/static/vendor-manifest.json')
-
 const fs = require('fs-extra')
 fs.copy(
   path.resolve(__dirname, '../../client/static'),
@@ -39,7 +37,7 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     new webpack.DllReferencePlugin({
       // context: __dirname,
-      manifest: require('../../client/static/vendor-manifest.json'),
+      manifest: require('../../client/static/dll/vendor-manifest.json'),
     })
   ],
   devtool: 'inline-source-map',
