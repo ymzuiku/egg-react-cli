@@ -9,7 +9,8 @@
     "babel-preset-react": "^6.24.1",
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.1",
-    "polyfill-exp": "^0.0.9",
+    "normalize.css": "^7.0.0",
+    "polyfill-exp": "^0.0.11",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -68,9 +69,13 @@
     "node": ">=8.9.0"
   },
   "scripts": {
+    "client": "webpack --config config/webpack/webpack.dev.js --watch ",
+    "dll": "webpack --config config/webpack/webpack.vendor.dll.js",
+    "dll-react": "dll=react nwebpack --config config/webpack/webpack.vendor.dll.js",
+    "dll-vue": "dll=vue webpack --config config/webpack/webpack.vendor.dll.js",
+    "build": "webpack --progress --config config/webpack/webpack.prod.js",
     "reload": "npm run build && npm run stop && npm run prod",
-    "start": "npm run dev & npm run vue",
-    "build": "npm run vue-build",
+    "start": "npm run dev & npm run client",
     "prod": "egg-scripts start --sticky --daemon --title=egg-server-testwb",
     "stop": "egg-scripts stop --title=egg-server-testwb",
     "dev": "egg-bin dev --sticky",
@@ -80,11 +85,7 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod",
-    "react": "lib=react webpack --config config/webpack/webpack.dev.js --watch ",
-    "react-build": "lib=react webpack --progress --config config/webpack/webpack.prod.js",
-    "vue": "lib=vue webpack --config config/webpack/webpack.dev.js --watch ",
-    "vue-build": "lib=vue webpack --progress --config config/webpack/webpack.prod.js"
+    "autod": "autod"
   },
   "ci": {
     "version": "8"

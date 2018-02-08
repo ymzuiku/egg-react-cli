@@ -3,13 +3,9 @@ var merge = require('webpack-merge')
 var path = require('path')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+var common = require('./webpack.common.js')
 
-var react = require('./webpack.react.js')
-var vue = require('./webpack.vue.js')
-var lib = process.env.lib
-let libs =  {react, vue}
-
-module.exports = merge(libs[lib], {
+module.exports = merge(common, {
   output: {
     filename: '[name].[hash].js',
     chunkFilename: '[name].chunk.[chunkhash].js',

@@ -1,13 +1,15 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var autoprefixer = require('autoprefixer');
+var autoprefixer = require('autoprefixer')
+
+var vendorManifest = require('../../client/static/vendor-manifest.json')
 
 const fs = require('fs-extra')
 fs.copy(
-  path.resolve(__dirname, '../../client/static'), 
+  path.resolve(__dirname, '../../client/static'),
   path.resolve(__dirname, '../../public/static'))
-  .then(() => {})
+  .then(() => { })
   .catch(err => console.error(err))
 
 module.exports = {
@@ -29,12 +31,16 @@ module.exports = {
   plugins: [
     // 全局变量
     new webpack.ProvidePlugin({
-      R: 'ramda'
+      $: 'jquery'
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../../client/index.html')
     }),
     new webpack.HashedModuleIdsPlugin(),
+    new webpack.DllReferencePlugin({
+      // context: __dirname,
+      manifest: require('../../client/static/vendor-manifest.json'),
+    })
   ],
   devtool: 'inline-source-map',
   module: {
@@ -45,7 +51,12 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
+        exclude: function (path) {
+          // 路径中含有 node_modules 的就不去解析。
+          var isNpmModule = !!path.match(/node_modules/) || !!path.match(/static/)
+          return isNpmModule;
+        },
         loader: 'babel-loader',
         query: {
           presets: ['react', "es2015",
@@ -174,7 +185,7 @@ module.exports = {
       }
     ]
   },
-  watchOptions:{
+  watchOptions: {
     ignored: /node_modules/,
   },
   stats: "errors-only",
