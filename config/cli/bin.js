@@ -2,7 +2,7 @@
 
 var path = require('path')
 var fse = require('fs-extra')
-var __root = path.resolve(process.argv[1], '../../../')
+var __root = path.resolve(__dirname, '../../')
 var to = path.resolve(process.cwd(), process.argv[2])
 
 let copyFiles = ['app', 'client', 'config', 'test', '.eslintrc', '.gitignore', 'app-package.json', 'README.md']
