@@ -8,15 +8,22 @@
 > 使用了 webpack.DllPlugin 对常用npm包进行预编译，减少开发时的重复编译时间
 
 ## 开始
+```bash
+$ npm install -g egg-react-cli
+$ egg-react-cli new-project
+$ cd new-project
+$ yarn install && npm run dll && npm run start
+```
+
+## 常用命令
 > 下载项目、修改项目名、安装依赖、编译固定npm包至dll、启动egg并且启动webpack watch打包
 ```bash
-git clone git@github.com:ymzuiku/egg-react-cli.git
-mv egg-react-cli new-project
-cd new-project
-npm install
-npm run dll  (预先打包前端固定依赖)
-npm run dev  (启动egg开发模式)
-npm run start  (新开一个终端窗口，使用webpackServer编译前端项目)
+$ npm run dll  (预先打包前端固定依赖)
+$ npm run start  (使用webpackServer编译前端项目)
+$ npm run build  (使用webpackServer编译用于发布的项目)
+$ npm run dev  (新开一个终端窗口，启动egg开发模式)
+$ npm run prod (后台多线程启动egg项目)
+$ npm run stop (停止egg后台进程)
 ```
 
 ### 前端编译

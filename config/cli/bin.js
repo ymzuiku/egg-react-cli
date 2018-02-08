@@ -5,14 +5,26 @@ var fse = require('fs-extra')
 var __root = path.resolve(__dirname, '../../')
 var to = path.resolve(process.cwd(), process.argv[2])
 
-let copyFiles = ['app', 'client', 'config', 'test', '.eslintrc', '.gitignore', 'app-package.json', 'README.md']
+let copyFiles = ['/app-package.json','app', 'client', 'config', 'test', '.eslintrc', '.gitignore', 'README.md']
 
-copyFiles.map(async (v, i) => {
-  await fse.copy(
-    __root + '/' + v,
-    path.resolve(to, v))
-  if (i === copyFiles.length - 1) {
-    await fs.move(to + '/app-package.json', to + '/package.json')
-    console.log('创建成功')
-  }
-})
+// 'app-package.json'
+console.log(`创建完成,请执行:`)
+console.log(`cd ${process.argv[2]} && npm install && npm run dll && npm run start`)
+console.log(`或使用yarn:`)
+console.log(`cd ${process.argv[2]} && yarn install && yarn run dll && yarn run start`)
+console.log(`详情请阅读: https://github.com/ymzuiku/egg-react-cli`)
+
+async function movePackage() {
+  copyFiles.map(async (v, i) => {
+    if(v === '/app-package.json'){
+      await fse.copy(
+        __root + '/app-package.json',
+        path.resolve(to, 'package.json'))
+    } else {
+      await fse.copy(
+        __root + '/' + v,
+        path.resolve(to, v))
+    }
+  })
+}
+movePackage()
