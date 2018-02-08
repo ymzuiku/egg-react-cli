@@ -35,16 +35,17 @@ $ npm run dll   (或则 dll-react、dll-vue)
 ### 默认分离以下 npm 包至 dll.js 文件
 
 如果要修改dll打包，请至config/webpack/webpack.vendor.dll.js* 中修改相应的文件
-
+```js
 - 默认 dll: ['polyfill-exp','animejs', 'ramda']
 - vue 额外 dll: ['react', 'react-dom', 'react-router', 'mobx', 'mobx-react', 'react-motion']
 - react 额外 dll: ['vue', 'vuex', 'vue-router']
+```
 
 ### 代理
 修改 package.json 中的 proxy为您所需的代理路径, 文档参考：
 https://github.com/chimurai/http-proxy-middleware
 
-约定，当 proxy 的端口和 prot 一致时，不启用代理
+约定，当 proxy 的端口和 prot 一致时，不启用代理, 以下是判断逻辑
 ```js
 var ignoreHost = [
   'http://0.0.0.0:' + package.port,
