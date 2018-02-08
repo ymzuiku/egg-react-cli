@@ -2,6 +2,10 @@
 
 > 本脚手架支持使用 react 或 vue 配合 egg 开发项目
 
+> 使用了 react-hot-loader 和 vue-loader 进行热更新
+
+> 使用了 webpack.DllPlugin 对常用npm包进行预编译，减少开发时的重复编译时间
+
 ## 开始
 > 下载项目、修改项目名、安装依赖、编译固定npm包至dll、启动egg并且启动webpack watch打包
 ```bash
@@ -9,8 +13,8 @@ git clone git@github.com:ymzuiku/egg-react-cli.git
 mv egg-react-cli new-project
 cd new-project
 npm install
-npm run dll
-npm run dev 
+npm run dll  (预先打包前端固定依赖)
+npm run dev  (启动egg开发模式)
 npm run start  (新开一个终端窗口，使用webpackServer编译前端项目)
 ```
 
@@ -28,11 +32,26 @@ $ npm run dll   (或则 dll-react、dll-vue)
 - vue 额外 dll: ['react', 'react-dom', 'react-router', 'mobx', 'mobx-react', 'react-motion']
 - react 额外 dll: ['vue', 'vuex', 'vue-router']
 
-### 代理约定
-- 修改 package.json 中的 proxy为您所需的代理路径
-- 如果 proxy 地址不可访问，webpack-server 不会启动成功
-- 如果 proxy 的 port 等于 webpack-server 的 port，者不开启反向代理
-  - 如果要在开发模式中和egg通讯，请把proxy指向egg的listen地址
+### 代理
+修改 package.json 中的 proxy为您所需的代理路径, 文档参考：
+https://github.com/chimurai/http-proxy-middleware
+
+约定，当 proxy 的端口和 prot 一致时，不启用代理
+```js
+var ignoreHost = [
+  'http://0.0.0.0:' + package.port,
+  'http://127.0.0.1:' + package.port,
+  'http://localhost:' + package.port,
+]
+if (package.proxy['/']) {
+  ignoreHost.map((v)=>{
+    if(package.proxy['/'].target === v) {
+      package.proxy['/'] = {}
+    }
+  })
+}
+```
+
 
 ## Egg.js快速入门
 

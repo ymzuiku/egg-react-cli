@@ -3,12 +3,17 @@
   "version": "0.0.5",
   "description": "",
   "private": true,
-  "egg-port":"7001",
-  "port":"7000",
-  "proxy": "http://127.0.0.1:7000",
+  "egg-port": "7001",
+  "port": "7000",
+  "proxy": {
+    "/": {
+      "target": "http://localhost:7000",
+      "secure": false
+    }
+  },
   "scripts": {
     "dll": "webpack --config config/webpack/webpack.vendor.dll.js",
-    "dll-all": "cross-env dll=def npm run dll",
+    "dll-all": "cross-env dll=all npm run dll",
     "dll-react": "cross-env dll=react npm run dll",
     "dll-vue": "cross-env dll=vue npm run dll",
     "start": "webpack-dev-server --config config/webpack/webpack.dev.js --open",
@@ -76,6 +81,7 @@
     "less-loader": "^4.0.5",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.0",
+    "react-hot-loader": "^4.0.0-beta.21",
     "style-loader": "^0.20.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",

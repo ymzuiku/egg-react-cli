@@ -3,6 +3,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
 
+
 const fs = require('fs-extra')
 fs.copy(
   path.resolve(__dirname, '../../client/static'),
@@ -92,8 +93,7 @@ module.exports = {
         },
         loader: 'babel-loader',
         query: {
-          presets: ['react', "es2015",
-            "stage-0", "env",],
+          presets: ['react', "es2015", "stage-0", "env",],
           plugins: ["transform-class-properties"]
         }
       },
