@@ -1,6 +1,6 @@
 {
   "name": "egg-react-cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "private": false,
   "egg-port": "7001",
@@ -32,9 +32,7 @@
     "ci": "npm run lint && npm run cov",
     "autod": "autod"
   },
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "animejs": "^2.2.0",
     "antd": "^3.2.0",
