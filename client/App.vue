@@ -1,5 +1,5 @@
 <template>
-  <div class='box' >
+  <div class='box font-hei' >
     <h3>Hello {{name}}</h3>
     <div class='img' ></div>
   </div>
@@ -21,6 +21,7 @@ export default {
   display flex
   align-items center
   flex-direction column
+  font-weight 100
 }
 .img {
   background-image url('./static/img.jpg')
