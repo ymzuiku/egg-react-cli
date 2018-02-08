@@ -1,9 +1,13 @@
-'use strict';
-
 let path = require('path')
+let package = require('../package.json')
+
 module.exports = appInfo => {
   const config = exports = {};
-
+  config.cluster={
+    listen:{
+      port:package['egg-port'],
+    }
+  }
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1517913427791_5823';
 

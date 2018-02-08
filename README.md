@@ -11,7 +11,7 @@ cd new-project
 npm install
 npm run dll
 npm run dev 
-npm run start  (新开一个终端窗口，编译前端代码至public)
+npm run start  (新开一个终端窗口，使用webpackServer编译前端项目)
 ```
 
 ### 前端编译
@@ -28,6 +28,11 @@ $ npm run dll   (或则 dll-react、dll-vue)
 - vue 额外 dll: ['react', 'react-dom', 'react-router', 'mobx', 'mobx-react', 'react-motion']
 - react 额外 dll: ['vue', 'vuex', 'vue-router']
 
+### 代理约定
+- 修改 package.json 中的 proxy为您所需的代理路径
+- 如果 proxy 地址不可访问，webpack-server 不会启动成功
+- 如果 proxy 的 port 等于 webpack-server 的 port，者不开启反向代理
+  - 如果要在开发模式中和egg通讯，请把proxy指向egg的listen地址
 
 ## Egg.js快速入门
 

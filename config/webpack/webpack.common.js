@@ -10,6 +10,40 @@ fs.copy(
   .then(() => { })
   .catch(err => console.error(err))
 
+let cssLoaders = [
+  {
+    loader: require.resolve('style-loader'),
+    options: {
+      sourceMap: true,
+    },
+  },
+  {
+    loader: require.resolve('css-loader'),
+    options: {
+      sourceMap: true,
+    },
+  },
+{
+  loader: require.resolve('postcss-loader'),
+  options: {
+    sourceMap: 'inline',
+    ident: 'postcss',
+    plugins: () => [
+      require('postcss-flexbugs-fixes'),
+      autoprefixer({
+        browsers: [
+          '>1%',
+          'last 4 versions',
+          'Firefox ESR',
+          'not ie < 9', // React doesn't support IE8 anyway
+        ],
+        flexbox: 'no-2009',
+      }),
+    ],
+  },
+},
+]
+
 module.exports = {
   entry: {
     app: './client/index.js',
@@ -23,6 +57,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
+      'vue': 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, '../../client'),
     }
   },
@@ -64,93 +99,29 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          require.resolve('style-loader'),
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-            },
-          },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9', // React doesn't support IE8 anyway
-                  ],
-                  flexbox: 'no-2009',
-                }),
-              ],
-            },
-          },
-        ],
+        use: [...cssLoaders],
       },
       {
         test: /\.styl$/,
-        use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader"
-        },
-        {
-          loader: require.resolve('postcss-loader'),
-          options: {
-            ident: 'postcss',
-            plugins: () => [
-              require('postcss-flexbugs-fixes'),
-              autoprefixer({
-                browsers: [
-                  '>1%',
-                  'last 4 versions',
-                  'Firefox ESR',
-                  'not ie < 9', // React doesn't support IE8 anyway
-                ],
-                flexbox: 'no-2009',
-              }),
-            ],
-          },
-        },
-        {
+        use: [
+          ...cssLoaders,
+          {
           loader: "stylus-loader", options: {
             strictMath: true,
-            noIeCompat: true
+            noIeCompat: true,
+            sourceMap: true,
           }
         },]
       },
       {
         test: /\.less$/,
-        use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader"
-        }, {
-          loader: require.resolve('postcss-loader'),
-          options: {
-            ident: 'postcss',
-            plugins: () => [
-              require('postcss-flexbugs-fixes'),
-              autoprefixer({
-                browsers: [
-                  '>1%',
-                  'last 4 versions',
-                  'Firefox ESR',
-                  'not ie < 9', // React doesn't support IE8 anyway
-                ],
-                flexbox: 'no-2009',
-              }),
-            ],
-          },
-        }, {
+        use: [
+          ...cssLoaders,
+          {
           loader: "less-loader", options: {
             strictMath: true,
-            noIeCompat: true
+            noIeCompat: true,
+            sourceMap: true,
           }
         },]
       },
@@ -160,8 +131,8 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              mimetype: 'image/png',
-              fallback: 'responsive-loader',
+              // mimetype: 'image/png',
+              // fallback: 'responsive-loader',
               limit: 8192
             }
           }
@@ -190,6 +161,5 @@ module.exports = {
   watchOptions: {
     ignored: /node_modules/,
   },
-  stats: "errors-only",
-  // stats: "minimal",
+  stats: "errors-only",  //minimal
 }
