@@ -40,7 +40,6 @@ module.exports = merge(common, {
     proxy: {
       ...package.proxy,
     },
-    // historyApiFallback: true,
     compress: false,
     quiet: false, //控制台中不输出打包的信息
     hot: true, //开启热点
