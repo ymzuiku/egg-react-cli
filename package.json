@@ -3,6 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "scripts": {
+    "dll": "webpack --config config/webpack/webpack.vendor.dll.js",
+    "dll-def": "cross-env dll=def npm run dll",
+    "dll-react": "cross-env dll=react npm run dll",
+    "dll-vue": "cross-env dll=vue npm run dll",
+    "start": "webpack --config config/webpack/webpack.dev.js --watch ",
+    "build": "webpack --progress --config config/webpack/webpack.prod.js",
+    "reload": "npm run build && npm run stop && npm run prod",
+    "prod": "egg-scripts start --sticky --daemon --title=egg-server-testwb",
+    "stop": "egg-scripts stop --title=egg-server-testwb",
+    "dev": "egg-bin dev --sticky",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
   "dependencies": {
     "animejs": "^2.2.0",
     "antd": "^3.2.0",
@@ -68,25 +87,6 @@
   },
   "engines": {
     "node": ">=8.9.0"
-  },
-  "scripts": {
-    "start": "cross-env npm run dev & npm run client",
-    "client": "webpack --config config/webpack/webpack.dev.js --watch ",
-    "dll": "webpack --config config/webpack/webpack.vendor.dll.js",
-    "dll-react": "cross-env dll=react npm run dll",
-    "dll-vue": "cross-env dll=vue npm run vue",
-    "build": "webpack --progress --config config/webpack/webpack.prod.js",
-    "reload": "npm run build && npm run stop && npm run prod",
-    "prod": "egg-scripts start --sticky --daemon --title=egg-server-testwb",
-    "stop": "egg-scripts stop --title=egg-server-testwb",
-    "dev": "egg-bin dev --sticky",
-    "debug": "egg-bin debug",
-    "test": "npm run lint -- --fix && npm run test-local",
-    "test-local": "egg-bin test",
-    "cov": "egg-bin cov",
-    "lint": "eslint .",
-    "ci": "npm run lint && npm run cov",
-    "autod": "autod"
   },
   "ci": {
     "version": "8"

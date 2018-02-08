@@ -98,7 +98,8 @@ module.exports = {
           loader: "style-loader"
         }, {
           loader: "css-loader"
-        }, {
+        },
+        {
           loader: require.resolve('postcss-loader'),
           options: {
             ident: 'postcss',
@@ -115,7 +116,8 @@ module.exports = {
               }),
             ],
           },
-        }, {
+        },
+        {
           loader: "stylus-loader", options: {
             strictMath: true,
             noIeCompat: true
@@ -158,6 +160,8 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
+              mimetype: 'image/png',
+              fallback: 'responsive-loader',
               limit: 8192
             }
           }

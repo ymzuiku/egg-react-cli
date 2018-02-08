@@ -1,28 +1,18 @@
 import 'normalize.css'
 import './stylesheets/index.styl'
-import Vue from 'vue'
-import App from './App.vue'
 
-new Vue({
-  el: '#root',
-  components: { App },
-  template: '<App/>'
-})
-
-/*
 // react
-const React = require('react')
-const ReactDOM = require('react-dom')
-const App = require('./App.js')
-ReactDOM.render(<App></App>, document.getElementById('root'))
+import React from 'react'
+import ReactDOM from 'react-dom'
+import AppReact from './AppReact'
+ReactDOM.render(<AppReact />, document.getElementById('react'))
 
 // vue
-const Vue = require('vue')
-const App = require('./App.vue')
+import Vue from 'vue'
+import AppVue from './AppVue'
 new Vue({
-  el: '#root',
-  components: { App },
+  el: '#vue',
+  components: { App:AppVue },
   template: '<App/>'
 })
-*/
 
