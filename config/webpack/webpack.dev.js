@@ -4,6 +4,19 @@ var path = require('path')
 var common = require('./webpack.common.js')
 var package = require('../../package.json')
 
+function host() {
+  var interfaces = require('os').networkInterfaces()
+  for (var devName in interfaces) {
+    var iface = interfaces[devName]
+    for (var i = 0; i < iface.length; i++) {
+      var alias = iface[i]
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+        return alias.address
+      }
+    }
+  }
+}
+
 var ignoreHost = [
   'http://0.0.0.0:' + package.port,
   'http://127.0.0.1:' + package.port,
@@ -22,16 +35,19 @@ module.exports = merge(common, {
   // devtool: 'inline-source-map',
   devtool: 'cheap-module-eval-source-map',
   devServer: {
+    host: host(),
     port: package.port,
     proxy: {
       ...package.proxy,
     },
     // historyApiFallback: true,
+    compress: false,
     quiet: false, //控制台中不输出打包的信息
     hot: true, //开启热点
     inline: true, //开启页面自动刷新
     stats: "errors-only",
-    contentBase: path.resolve(__dirname, '../../public/'),
+    noInfo:true,
+    contentBase: path.resolve(__dirname, '../../client/'),
   },
   plugins: [
     new webpack.DefinePlugin({

@@ -2,7 +2,8 @@
 
 > 本脚手架支持使用 react 或 vue 配合 egg 开发项目
 
-> 使用了 react-hot-loader 和 vue-loader 进行热更新
+> 使用了 [react-hot-loader](https://github.com/gaearon/react-hot-loader/tree/next) 和 vue-loader 进行热更新
+
 
 > 使用了 webpack.DllPlugin 对常用npm包进行预编译，减少开发时的重复编译时间
 

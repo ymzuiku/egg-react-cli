@@ -5,6 +5,13 @@ var CleanWebpackPlugin = require('clean-webpack-plugin')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var common = require('./webpack.common.js')
 
+const fs = require('fs-extra')
+fs.copy(
+  path.resolve(__dirname, '../../client/static'),
+  path.resolve(__dirname, '../../public/static'))
+  .then(() => { })
+  .catch(err => console.error(err))
+
 module.exports = merge(common, {
   output: {
     filename: '[name].[hash].js',
