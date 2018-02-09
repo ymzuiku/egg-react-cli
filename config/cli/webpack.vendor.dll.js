@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-let def = ['polyfill-exp','animejs', 'ramda']
+let def = ['polyfill-exp','animejs', 'ramda', 'lodash']
 let react = ['react','react-dom','react-router', 'mobx', 'mobx-react', 'react-motion']
 let vue = ['vue','vuex', 'vue-router']
 var dll = process.env.dll || 'def'

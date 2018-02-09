@@ -57,7 +57,8 @@ module.exports = {
   plugins: [
     // 全局变量
     new webpack.ProvidePlugin({
-      $: 'jquery'
+      $: 'jquery',
+      _:'lodash'
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../../client/index.html')
