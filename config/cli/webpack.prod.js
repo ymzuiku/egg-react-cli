@@ -4,11 +4,12 @@ var path = require('path')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var common = require('./webpack.common.js')
+var client = process.env.client || 'react'
 
 const fse = require('fs-extra')
 fse.copy(
-  path.resolve(__dirname, '../../client/static'),
-  path.resolve(__dirname, '../../public/static'))
+  path.resolve(__dirname, `../../client-${client}/assets`),
+  path.resolve(__dirname, `../../public/${client}/assets`))
   .then(() => { })
   .catch(err => console.error(err))
 
@@ -24,7 +25,7 @@ module.exports = merge(common, {
       // sourceMap: true,
     }),
     new CleanWebpackPlugin(['*'], {
-      root: path.resolve(__dirname, '../../public'),
+    root: path.resolve(__dirname, `../../public/${client}`),
       exclude: ['video'],
       verbose: true,
       dry: false,

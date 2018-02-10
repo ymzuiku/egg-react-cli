@@ -1,6 +1,6 @@
 # egg-react-cli
 
-> 本脚手架支持使用 react 或 vue 配合 egg 开发项目
+> 该脚手架支持使用 react 或 vue 配合 egg 开发项目
 
 > 使用了 [react-hot-loader](https://github.com/gaearon/react-hot-loader/tree/next) 和 vue-loader 进行热更新
 
@@ -19,27 +19,47 @@ $ yarn install && npm run dll && npm run start
 > 下载项目、修改项目名、安装依赖、编译固定npm包至dll、启动egg并且启动webpack watch打包
 ```bash
 $ npm run dll  (预先打包前端固定依赖)
-$ npm run start  (使用webpackServer编译前端项目)
-$ npm run build  (使用webpackServer编译用于发布的项目)
+$ npm run start  (启动client-react文件夹内的前端项目)
+$ npm run build  (编译client-react文件夹内的前端项目)
 $ npm run dev  (新开一个终端窗口，启动egg开发模式)
 $ npm run prod (后台多线程启动egg项目)
 $ npm run stop (停止egg后台进程)
 ```
 
-### 前端编译
-首次开发需要先编译依赖到 client/static/vendor.dll.js
+### 针对某个目录启动
+
+例如需要启动 client-vue 目录：
 ```bash
-$ npm run dll   (或则 dll-react、dll-vue)
+$ client=vue npm run start
+```
+以下命令可以设置目录，默认为 client-react 目录:
+```bash
+$ client=name npm run dll
+$ client=name npm run start
+$ client=name npm run build (编译至public/name)
 ```
 
-### 默认分离以下 npm 包至 dll.js 文件
-
-如果要修改dll打包，请至config/webpack/webpack.vendor.dll.js* 中修改相应的文件
-```js
-- 默认 dll: ['polyfill-exp','animejs', 'ramda']
-- vue 额外 dll: ['react', 'react-dom', 'react-router', 'mobx', 'mobx-react', 'react-motion']
-- react 额外 dll: ['vue', 'vuex', 'vue-router']
+### 前端编译
+预先编译dll包可以大幅度提高平时webpack的打包速度
+```bash
+$ npm run dll
 ```
+如果要修改dll打包设定，请修改package.json 中的dll数组, 当前默认设置为react相关的依赖，请根据需要自行修改:
+```json
+"dll": [
+    "polyfill-exp",
+    "animejs",
+    "ramda",
+    "underscore",
+    "react",
+    "react-dom",
+    "react-router-dom",
+    "mobx",
+    "mobx-react",
+    "styled-components"
+  ],
+```
+
 
 ### 代理
 修改 package.json 中的 proxy为您所需的代理路径, 文档参考：

@@ -1,7 +1,15 @@
+var fse = require('fs-extra')
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
+var client = process.env.client  || 'react'
+var dllManifestPath = path.join(__dirname, '../', '../', `/client-${client}/assets/dll/dll-manifest.json`)
+let isHaveDll = fse.existsSync(dllManifestPath)
+let dllPligins = isHaveDll?[new webpack.DllReferencePlugin({
+  // context: __dirname,
+  manifest: dllManifestPath,
+})]:[]
 
 let cssLoaders = [
   {
@@ -19,7 +27,8 @@ let cssLoaders = [
 {
   loader: require.resolve('postcss-loader'),
   options: {
-    sourceMap: 'inline',
+    // sourceMap: 'inline',
+    sourceMap: true,
     ident: 'postcss',
     plugins: () => [
       require('postcss-flexbugs-fixes'),
@@ -39,35 +48,32 @@ let cssLoaders = [
 
 module.exports = {
   entry: {
-    app: './client/index.js',
+    app: `./client-${client}/index.js`,
   },
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
-    path: path.resolve(__dirname, '../../public'),
+    path: path.resolve(__dirname, `../../public/${client}`),
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       'vue': 'vue/dist/vue.esm.js',
-      '~': path.resolve(__dirname, '../../client'),
+      '~': path.resolve(__dirname, `../../client-${client}`),
     }
   },
   plugins: [
     // 全局变量
     new webpack.ProvidePlugin({
       $: 'jquery',
-      _:'lodash'
+      _:'underscore'
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../../client/index.html')
+      template: path.resolve(__dirname, `../../client-${client}/index.html`)
     }),
     new webpack.HashedModuleIdsPlugin(),
-    new webpack.DllReferencePlugin({
-      // context: __dirname,
-      manifest: require('../../client/static/dll/vendor-manifest.json'),
-    })
+    ...dllPligins,
   ],
   devtool: 'inline-source-map',
   module: {
@@ -81,7 +87,7 @@ module.exports = {
         // exclude: /node_modules/,
         exclude: function (path) {
           // 路径中含有 node_modules 的就不去解析。
-          var isNpmModule = !!path.match(/node_modules/) || !!path.match(/static/)
+          var isNpmModule = !!path.match(/node_modules/) || !!path.match(/assets/)
           return isNpmModule;
         },
         loader: 'babel-loader',

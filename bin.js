@@ -2,10 +2,20 @@
 
 var path = require('path')
 var fse = require('fs-extra')
-var __root = path.resolve(__dirname, '../../')
+var __root = path.resolve(__dirname, './')
 var to = path.resolve(process.cwd(), process.argv[2])
 
-let copyFiles = ['/app-package.json','app', 'client', 'config',  '.eslintrc', '.gitignore', 'README.md']
+// 需要拷贝的文件列表
+let copyFiles = [
+  'app-package.json', 
+  'app', 
+  'client-react', 
+  'client-vue',
+  'config',  
+  '.eslintrc', 
+  '.gitignore', 
+  'README.md'
+]
 
 // 'app-package.json'
 console.log(`创建完成,请执行:`)
@@ -16,11 +26,22 @@ console.log(`详情请阅读: https://github.com/ymzuiku/egg-react-cli`)
 
 async function movePackage() {
   copyFiles.map(async (v, i) => {
-    if(v === '/app-package.json'){
+    // if(v === '_client-react'){
+    //   await fse.copy(
+    //     __root + '/_client-react',
+    //     path.resolve(to, 'client-react'))
+    // } 
+    // if(v === '_client-vue'){
+    //   await fse.copy(
+    //     __root + '/_client-vue',
+    //     path.resolve(to, 'client-vue'))
+    // } 
+    if(v === 'app-package.json'){
       await fse.copy(
         __root + '/app-package.json',
         path.resolve(to, 'package.json'))
-    } else {
+    } 
+    else {
       await fse.copy(
         __root + '/' + v,
         path.resolve(to, v))

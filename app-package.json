@@ -3,6 +3,18 @@
   "version": "0.0.1",
   "description": "",
   "private": true,
+  "dll": [
+    "polyfill-exp",
+    "animejs",
+    "ramda",
+    "underscore",
+    "react",
+    "react-dom",
+    "react-router-dom",
+    "mobx",
+    "mobx-react",
+    "styled-components"
+  ],
   "egg-port": "7001",
   "port": "7000",
   "proxy": {
@@ -12,17 +24,13 @@
     }
   },
   "scripts": {
-    "bin": "node config/cli/bin.js",
-    "dll": "webpack --config config/cli/webpack.vendor.dll.js",
-    "dll-all": "cross-env dll=all npm run dll",
-    "dll-react": "cross-env dll=react npm run dll",
-    "dll-vue": "cross-env dll=vue npm run dll",
+    "bin": "node bin.js",
+    "dll": "webpack --config config/cli/webpack.dll.js",
     "start": "webpack-dev-server --config config/cli/webpack.dev.js --open",
-    "watch": "webpack --config config/cli/webpack.dev.js --watch ",
     "build": "webpack --progress --config config/cli/webpack.prod.js",
-    "reload": "npm run build && npm run stop && npm run prod",
-    "prod": "egg-scripts start --sticky --daemon --title=egg-server-testwb",
-    "stop": "egg-scripts stop --title=egg-server-testwb",
+    "reload": "npm run stop && npm run prod",
+    "prod": "egg-scripts start --sticky --daemon --title=egg-server-cli",
+    "stop": "egg-scripts stop --title=egg-server-cli",
     "dev": "egg-bin dev --sticky",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
@@ -35,13 +43,13 @@
   "dependencies": {
     "animejs": "^2.2.0",
     "antd": "^3.2.0",
-    "lodash": "^4.17.5",
+    "underscore": "^1.8.3",
     "styled-components": "^3.1.6",
+    "polished": "^1.9.2",
     "babel-preset-react": "^6.24.1",
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.1",
-    "normalize.css": "^7.0.0",
-    "polyfill-exp": "^0.0.11",
+    "polyfill-exp": "^0.0.12",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -53,7 +61,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.101",
+    "@types/underscore": "^1.8.7",
     "autod": "^3.0.1",
     "autod-egg": "^1.0.0",
     "autoprefixer": "^7.2.5",
@@ -110,8 +118,5 @@
     "url": ""
   },
   "author": "",
-  "bin": {
-    "egg-react-cli": "config/cli/bin.js"
-  },
   "license": "MIT"
 }
