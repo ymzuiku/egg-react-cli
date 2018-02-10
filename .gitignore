@@ -9,6 +9,8 @@ coverage/
 public/
 client/static/dll/
 .idea/
+.git-no/
+**/.git-no/
 run/
 .DS_Store
 *.sw*
