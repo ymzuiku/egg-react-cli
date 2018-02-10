@@ -36,6 +36,7 @@
     "animejs": "^2.2.0",
     "antd": "^3.2.0",
     "lodash": "^4.17.5",
+    "styled-components": "^3.1.6",
     "babel-preset-react": "^6.24.1",
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.1",
