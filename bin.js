@@ -7,40 +7,35 @@ var to = path.resolve(process.cwd(), process.argv[2])
 
 // 需要拷贝的文件列表
 let copyFiles = [
-  'app-package.json', 
-  'app', 
-  'client-react', 
+  'bin.js',
+  'package.json',
+  'app',
+  'node_modules',
+  'client-react',
+  'client-native',
   'client-vue',
-  'config',  
-  '.eslintrc', 
-  '.gitignore', 
+  'config',
+  '.eslintrc',
+  '.gitignore',
   'README.md'
 ]
 
-// 'app-package.json'
-console.log(`创建完成,请执行:`)
-console.log(`cd ${process.argv[2]} && npm install && npm run dll && npm run start`)
-console.log(`或使用yarn:`)
-console.log(`cd ${process.argv[2]} && yarn install && yarn run dll && yarn run start`)
-console.log(`详情请阅读: https://github.com/ymzuiku/egg-react-cli`)
-
 async function movePackage() {
+  console.log(`创建中...`)
   copyFiles.map(async (v, i) => {
-    // if(v === '_client-react'){
-    //   await fse.copy(
-    //     __root + '/_client-react',
-    //     path.resolve(to, 'client-react'))
-    // } 
-    // if(v === '_client-vue'){
-    //   await fse.copy(
-    //     __root + '/_client-vue',
-    //     path.resolve(to, 'client-vue'))
-    // } 
-    if(v === 'app-package.json'){
+    // if (v === 'client-native') {
+    //   await fse.emptyDir(__root + '/client-native/node_modules')
+    //   await fse.remove(__root + '/client-native/ios')
+    //   await fse.remove(__root + '/client-native/android')
+    //   await fse.copy(__root + '/config/react-native-backup/ios', __root + '/client-native/ios')
+    //   await fse.copy(__root + '/config/react-native-backup/android', __root + '/client-native/android')
+    //   await fse.copy(__root + '/' + v, path.resolve(to, v))
+    // }
+    if (v === 'app-package.json') {
       await fse.copy(
         __root + '/app-package.json',
         path.resolve(to, 'package.json'))
-    } 
+    }
     else {
       await fse.copy(
         __root + '/' + v,

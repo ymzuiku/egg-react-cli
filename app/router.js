@@ -4,6 +4,7 @@ module.exports = (app = $app) => {
   // static
   router.redirect('/', '/react/index.html', 302)
   router.redirect('/react', '/react/index.html', 302)
+  router.redirect('/native', '/native/index.html', 302)
   router.redirect('/vue', '/vue/index.html', 302)
 
   // http

@@ -1,10 +1,14 @@
+var client = process.env.client  || 'native'
+if(process.env.c) {
+  client = process.env.c
+}
+
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 var path = require('path')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var common = require('./webpack.common.js')
-var client = process.env.client || 'react'
 
 const fse = require('fs-extra')
 fse.copy(

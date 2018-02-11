@@ -1,20 +1,30 @@
 {
   "name": "egg-react-cli",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "",
   "private": false,
-  "dll": [
-    "polyfill-exp",
-    "animejs",
-    "ramda",
-    "underscore",
-    "react",
-    "react-dom",
-    "react-router-dom",
-    "mobx",
-    "mobx-react",
-    "styled-components"
-  ],
+  "dll": {
+    "any": [
+      "axios",
+      "ramda",
+      "underscore"
+    ],
+    "react": [
+      "polyfill-exp",
+      "react",
+      "react-dom",
+      "react-router-dom"
+    ],
+    "vue": [
+      "polyfill-exp",
+      "vue",
+      "vuex",
+      "vue-router"
+    ],
+    "native": [
+      "mobx"
+    ]
+  },
   "egg-port": "7001",
   "port": "7000",
   "proxy": {
@@ -45,19 +55,21 @@
     "fs-extra": "^5.0.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.101",
     "@types/underscore": "^1.8.7",
     "animejs": "^2.2.0",
     "antd": "^3.2.0",
     "autod": "^3.0.1",
     "autod-egg": "^1.0.0",
     "autoprefixer": "^7.2.5",
+    "axios": "^0.17.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-react-native": "1.9.2",
     "babel-register": "^6.26.0",
+    "bluebird": "^3.5.1",
     "clean-webpack-plugin": "^0.1.18",
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.9",
@@ -78,7 +90,6 @@
     "jsxobj": "^1.1.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "lodash": "^4.17.5",
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.1",
     "polished": "^1.9.2",
@@ -92,6 +103,7 @@
     "react-motion": "^0.5.2",
     "react-router-dom": "^4.2.2",
     "socket.io-client": "^2.0.4",
+    "source-map-loader": "^0.1.6",
     "style-loader": "^0.20.1",
     "styled-components": "^3.1.6",
     "stylus": "^0.54.5",
@@ -109,6 +121,7 @@
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1",
     "webstorm-disable-index": "^1.2.0",
+    "whatwg-fetch": "^2.0.3",
     "xml-loader": "^1.2.1"
   },
   "engines": {

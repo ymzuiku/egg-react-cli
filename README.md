@@ -1,6 +1,6 @@
 # egg-react-cli
 
-> 该脚手架支持使用 react 或 vue 配合 egg 开发项目
+> 该脚手架支持使用 react、reactXP 或 vue 配合 egg 开箱即用地开发项目
 
 > 使用了 [react-hot-loader](https://github.com/gaearon/react-hot-loader/tree/next) 和 vue-loader 进行热更新
 
@@ -28,38 +28,27 @@ $ npm run stop (停止egg后台进程)
 
 ### 针对某个目录启动
 
-例如需要启动 client-vue 目录：
+例如需要启动 client-react 目录：
 ```bash
-$ client=vue npm run start
+$ client=react npm run start
 ```
-以下命令可以设置目录，默认为 client-react 目录:
+以下命令可以设置目录，默认为 client-native 目录:
 ```bash
 $ client=name npm run dll
 $ client=name npm run start
 $ client=name npm run build (编译至public/name)
 ```
+client也可以简写成c
+```bash
+$ c=name npm run dll
+```
 
 ### 前端编译
 预先编译dll包可以大幅度提高平时webpack的打包速度
 ```bash
-$ npm run dll
+$ c=react npm run dll
 ```
-如果要修改dll打包设定，请修改package.json 中的dll数组, 当前默认设置为react相关的依赖，请根据需要自行修改:
-```json
-"dll": [
-    "polyfill-exp",
-    "animejs",
-    "ramda",
-    "underscore",
-    "react",
-    "react-dom",
-    "react-router-dom",
-    "mobx",
-    "mobx-react",
-    "styled-components"
-  ],
-```
-
+如果要修改dll打包设定，请修改package.json 中的 dll 数组, 当前默认设置为react相关的依赖，请根据需要自行修改.
 
 ### 代理
 修改 package.json 中的 proxy为您所需的代理路径, 文档参考：

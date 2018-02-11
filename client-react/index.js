@@ -1,6 +1,6 @@
+import 'polyfill-exp'
 import React from 'react'
 import { hotRender } from '~/utils'
-
 class App extends React.Component {
   render() {
     return <div >

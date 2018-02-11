@@ -10,13 +10,18 @@ function host() {
     }
   }
 }
+let nowHost = host()
+
+var client = process.env.client  || 'native'
+if(process.env.c) {
+  client = process.env.c
+}
 
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 var path = require('path')
 var common = require('./webpack.common.js')
 var package = require('../../package.json')
-var client = process.env.client || 'react'
 var clientPath =  path.resolve(__dirname, `../../client-${client}/`)
 var port = process.env.port || package.port
 // console.log(`{client:${client}, path:${clientPath}}`)
@@ -34,13 +39,14 @@ if (package.proxy['/']) {
     }
   })
 }
-console.log(`http://${host()}:${port}/`)
+
+console.log(`http://${nowHost}:${port}/`)
 
 module.exports = merge(common, {
   // devtool: 'inline-source-map',
   devtool: 'cheap-module-eval-source-map',
   devServer: {
-    // host: host(),
+    host: nowHost,
     port: port,
     proxy: {
       ...package.proxy,
@@ -71,7 +77,7 @@ module.exports = merge(common, {
         },
         loader: 'babel-loader',
         query: {
-          presets: ['react', "es2015", "stage-0", "env",],
+          presets: ['react', "es2015", "stage-0", "env","react-native"],
           plugins: ["transform-class-properties", "react-hot-loader/babel"]
         }
       }

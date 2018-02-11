@@ -1,9 +1,14 @@
+var client = process.env.client  || 'native'
+if(process.env.c) {
+  client = process.env.c
+}
+
 var fse = require('fs-extra')
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
-var client = process.env.client  || 'react'
+
 var dllManifestPath = path.join(__dirname, '../', '../', `/client-${client}/assets/dll/dll-manifest.json`)
 let isHaveDll = fse.existsSync(dllManifestPath)
 let dllPligins = isHaveDll?[new webpack.DllReferencePlugin({
@@ -92,7 +97,7 @@ module.exports = {
         },
         loader: 'babel-loader',
         query: {
-          presets: ['react', "es2015", "stage-0", "env",],
+          presets: ['react', "es2015", "stage-0", "env", "react-native"],
           plugins: ["transform-class-properties"]
         }
       },

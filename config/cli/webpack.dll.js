@@ -1,28 +1,23 @@
+var client = process.env.client  || 'native'
+if(process.env.c) {
+  client = process.env.c
+}
+const R = require('ramda')
 const fse = require('fs-extra')
 const path = require('path');
 const webpack = require('webpack');
 var package = require('../../package.json')
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-var client = process.env.client || 'react'
 
-
-let def = ["polyfill-exp", "animejs", "ramda", "underscore"]
-let react = ["react", "react-dom", "react-router"]
-let reactAll = ["react", "react-dom", "react-router-dom", "mobx", "mobx-react", "styled-components", "polished"]
-let vue = ["vue", "vuex", "vue-router"]
-
-var dll = process.env.dll || 'package'
-let dlls = {
-  package: package.dll,
-  def:def,
-  react: [...def, ...react],
-  vue: [...def, ...vue],
-  all: [...def, ...vue, ...react],
-}
+var dll = package.dll
+let dllAny = dll.any || []
+let dllClient = dll[client] || []
+let dllEnd=  R.uniq([...dllAny, ...dllClient])
+console.log('packing dll: ',dllEnd)
 
 module.exports = {
   entry: {
-    dll: dlls[dll]
+    dll: dllEnd
   },
   output: {
     path: path.join(__dirname, '../', '../', `/client-${client}/assets/dll`),
