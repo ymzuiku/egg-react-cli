@@ -63,6 +63,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
+      'react-native':path.resolve(__dirname, `../../client-${client}/utils/ReactNativeEmpty.js`),
       'vue$': 'vue/dist/vue.esm.js',
       'vue': 'vue/dist/vue.esm.js',
       '~': path.resolve(__dirname, `../../client-${client}`),
@@ -98,7 +99,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['react', "es2015", "stage-0", "env", "react-native"],
-          plugins: ["transform-class-properties"]
+          plugins: ["transform-class-properties","transform-async-to-module-method","transform-runtime"]
         }
       },
       {

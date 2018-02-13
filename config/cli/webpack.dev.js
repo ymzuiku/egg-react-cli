@@ -78,7 +78,7 @@ module.exports = merge(common, {
         loader: 'babel-loader',
         query: {
           presets: ['react', "es2015", "stage-0", "env","react-native"],
-          plugins: ["transform-class-properties", "react-hot-loader/babel"]
+          plugins: ["transform-class-properties","transform-async-to-module-method","transform-runtime", "react-hot-loader/babel"]
         }
       }
     ]

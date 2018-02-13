@@ -23,14 +23,6 @@ let copyFiles = [
 async function movePackage() {
   console.log(`创建中...`)
   copyFiles.map(async (v, i) => {
-    // if (v === 'client-native') {
-    //   await fse.emptyDir(__root + '/client-native/node_modules')
-    //   await fse.remove(__root + '/client-native/ios')
-    //   await fse.remove(__root + '/client-native/android')
-    //   await fse.copy(__root + '/config/react-native-backup/ios', __root + '/client-native/ios')
-    //   await fse.copy(__root + '/config/react-native-backup/android', __root + '/client-native/android')
-    //   await fse.copy(__root + '/' + v, path.resolve(to, v))
-    // }
     if (v === 'app-package.json') {
       await fse.copy(
         __root + '/app-package.json',
