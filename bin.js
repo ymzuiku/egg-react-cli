@@ -21,11 +21,11 @@ let copyFiles = [
 ]
 
 async function movePackage() {
-  console.log(`创建中...`)
+  console.log(`Start...`)
   copyFiles.map(async (v, i) => {
     console.log(path.resolve(to, v))
     fs.copySync( __root + '/' + v, path.resolve(to, v))
   })
 }
 movePackage()
-console.log(`创建完毕`)
+console.log(`Done!`)
