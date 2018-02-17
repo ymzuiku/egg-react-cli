@@ -1,5 +1,5 @@
-var client = process.env.client  || 'native'
-if(process.env.c) {
+var client = process.env.client || 'native'
+if (process.env.c) {
   client = process.env.c
 }
 
@@ -11,10 +11,10 @@ var autoprefixer = require('autoprefixer')
 
 var dllManifestPath = path.join(__dirname, '../', '../', `/client-${client}/assets/dll/dll-manifest.json`)
 let isHaveDll = fse.existsSync(dllManifestPath)
-let dllPligins = isHaveDll?[new webpack.DllReferencePlugin({
+let dllPligins = isHaveDll ? [new webpack.DllReferencePlugin({
   // context: __dirname,
   manifest: dllManifestPath,
-})]:[]
+})] : []
 
 let cssLoaders = [
   {
@@ -29,26 +29,26 @@ let cssLoaders = [
       sourceMap: true,
     },
   },
-{
-  loader: require.resolve('postcss-loader'),
-  options: {
-    // sourceMap: 'inline',
-    sourceMap: true,
-    ident: 'postcss',
-    plugins: () => [
-      require('postcss-flexbugs-fixes'),
-      autoprefixer({
-        browsers: [
-          '>1%',
-          'last 4 versions',
-          'Firefox ESR',
-          'not ie < 9', // React doesn't support IE8 anyway
-        ],
-        flexbox: 'no-2009',
-      }),
-    ],
+  {
+    loader: require.resolve('postcss-loader'),
+    options: {
+      // sourceMap: 'inline',
+      sourceMap: true,
+      ident: 'postcss',
+      plugins: () => [
+        require('postcss-flexbugs-fixes'),
+        autoprefixer({
+          browsers: [
+            '>1%',
+            'last 4 versions',
+            'Firefox ESR',
+            'not ie < 9', // React doesn't support IE8 anyway
+          ],
+          flexbox: 'no-2009',
+        }),
+      ],
+    },
   },
-},
 ]
 
 module.exports = {
@@ -63,7 +63,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'react-native':path.resolve(__dirname, `../../client-${client}/utils/ReactNativeEmpty.js`),
+      'react-native': path.resolve(__dirname, `../../client-${client}/ReactNativeEmpty.js`),
       'vue$': 'vue/dist/vue.esm.js',
       'vue': 'vue/dist/vue.esm.js',
       '~': path.resolve(__dirname, `../../client-${client}`),
@@ -73,7 +73,7 @@ module.exports = {
     // 全局变量
     new webpack.ProvidePlugin({
       $: 'jquery',
-      _:'underscore'
+      _: 'underscore'
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, `../../client-${client}/index.html`)
@@ -98,8 +98,15 @@ module.exports = {
         },
         loader: 'babel-loader',
         query: {
-          presets: ['react', "es2015", "stage-0", "env", "react-native"],
-          plugins: ["transform-class-properties","transform-async-to-module-method","transform-runtime"]
+          presets: ['react', "stage-0", ["env",
+            {
+              "targets": {
+                "browsers": ["last 2 versions", "safari >= 7"],
+                "node": "current",
+                "useBuiltIns": true,
+              }
+            }]],
+          plugins: ["transform-class-properties", "transform-async-to-module-method", "transform-runtime", "react-hot-loader/babel"]
         }
       },
       {
@@ -111,24 +118,24 @@ module.exports = {
         use: [
           ...cssLoaders,
           {
-          loader: "stylus-loader", options: {
-            strictMath: true,
-            noIeCompat: true,
-            sourceMap: true,
-          }
-        },]
+            loader: "stylus-loader", options: {
+              strictMath: true,
+              noIeCompat: true,
+              sourceMap: true,
+            }
+          },]
       },
       {
         test: /\.less$/,
         use: [
           ...cssLoaders,
           {
-          loader: "less-loader", options: {
-            strictMath: true,
-            noIeCompat: true,
-            sourceMap: true,
-          }
-        },]
+            loader: "less-loader", options: {
+              strictMath: true,
+              noIeCompat: true,
+              sourceMap: true,
+            }
+          },]
       },
       {
         test: /\.(png|svg|jpg|gif|pdf)$/,

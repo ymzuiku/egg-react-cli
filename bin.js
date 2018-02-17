@@ -10,7 +10,7 @@ let copyFiles = [
   'bin.js',
   'package.json',
   'app',
-  // 'node_modules',
+  'node_modules',
   'client-react',
   'client-native',
   'client-vue',
@@ -23,7 +23,7 @@ let copyFiles = [
 async function movePackage() {
   console.log(`Start...`)
   copyFiles.map(async (v, i) => {
-    console.log(path.resolve(to, v))
+    console.log('copy: ',path.resolve(to, v))
     fs.copySync( __root + '/' + v, path.resolve(to, v))
   })
 }

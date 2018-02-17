@@ -65,24 +65,6 @@ module.exports = merge(common, {
     }),
     new webpack.HotModuleReplacementPlugin(),    
   ],
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        // exclude: /node_modules/,
-        exclude: function (path) {
-          // 路径中含有 node_modules 的就不去解析。
-          var isNpmModule = !!path.match(/node_modules/) || !!path.match(/assets/)
-          return isNpmModule;
-        },
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', "es2015", "stage-0", "env","react-native"],
-          plugins: ["transform-class-properties","transform-async-to-module-method","transform-runtime", "react-hot-loader/babel"]
-        }
-      }
-    ]
-  },
   stats: "errors-only",
 })
 
